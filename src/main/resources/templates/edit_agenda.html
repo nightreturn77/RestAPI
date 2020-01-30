@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Editar Agenda</title>
+<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+	<div class="container" align="center">
+		<h1>Editar registro</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${agenda}"
+			method="post">
+
+			<table class="table" cellpadding="10">
+				<tr>				
+					<td>ID do Registro:</td>
+					<td>
+						<input class="form-control" type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>			
+				<tr>		
+				<div class="form-group">		
+					<td>Nome:</td>
+					<td>
+						<input class="form-control" maxlength="35" minlength="3"  type="text" th:field="*{nome}" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" />
+					
+					</td>
+					</div>
+				</tr>
+				<tr>
+				<div>
+					<td>Email:</td>
+					<td><input class="form-control" type="text"  maxlength="32"th:field="*{email}" /></td>
+				</div>
+				</tr>
+				
+				<tr>
+				<div>
+					<td>Telefone:</td>
+					<td><input  class="form-control" type="text" minlength="10" maxlength="11" placeholder="ex:dd989898587" pattern="[0-9]+$" th:field="*{telefone}" /></td>
+				</div>
+				</tr>
+				
+				<tr>
+				<div>
+					<td>Endereco:</td>
+					<td><input  class="form-control" type="text" th:field="*{endereco}" /></td>
+					</div>
+				</tr>								
+				<tr>
+					<td colspan="2"><button  class="btn btn-secondary btn-lg" type="submit">Salvar</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

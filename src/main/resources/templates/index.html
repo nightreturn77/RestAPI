@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8" />
+<title>Agenda</title>
+<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+	<div class="container" align="center">
+		<h1>AGENDA</h1>
+		<div class="container">
+		
+		
+		<!--  form action="pesquisarAgenda" method="post">
+		<label>Pequisa por nome</label>
+		<input name="nomepesquisa">
+	<button type="btn btn-secondary btn-lg">Buscar</button>
+-->
+
+
+</form>
+		<table  class="table" cellpadding="10">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Telefone</th>
+					<th>Endereço</th>
+					<th>Editar</th>
+					<th>Deletar</th>
+					<th>JSON</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="agenda : ${listAgenda}">
+					<td th:text="${agenda.id}">ID do registro</td>
+					<td th:text="${agenda.nome}">Nome</td>
+					<td th:text="${agenda.email}">Email</td>
+					<td th:text="${agenda.telefone}">Telefone</td>
+					<td th:text="${agenda.endereco}">Endereco</td>
+					<td><a th:href="@{'/edit/' + ${agenda.id}}">Editar</a></td>
+					<td><a th:href="@{'/delete/' + ${agenda.id}}">Deletar</a></td>
+					<td><a th:href="@{'/json/' + ${agenda.id}}">JSON</a></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<a href="new"><button class="btn btn-secondary btn-lg">Cadastrar novo registro </button></a>
+		<a href="/json"><button class="btn btn-secondary btn-lg">JSON (TODOS) </button></a>
+	</div>
+	<script type="text/javascript">
+	var behavior = function (val) {
+	    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+	},
+	options = {
+	    onKeyPress: function (val, e, field, options) {
+	        field.mask(behavior.apply({}, arguments), options);
+	    }
+	};
+
+	$('.phone').mask(behavior, options);
+    </script>
+	<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</body>
+</html>
